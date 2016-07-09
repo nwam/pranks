@@ -1,0 +1,4 @@
+#!/bin/sh
+
+clear
+mvn clean compile assembly:single
