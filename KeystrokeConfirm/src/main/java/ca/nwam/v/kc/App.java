@@ -26,9 +26,12 @@ public class App {
                 System.out.println(event);
                 if(event.getVirtualKeyCode()==GlobalKeyEvent.VK_ESCAPE)
                 	System.out.println(event);
-                	
+                
+                String charPressed = Character.toString(event.getKeyChar());
+                System.out.println(charPressed);
                 //run the prompt as a separate program to allow it to regain focus and multiply
-                ProcessBuilder pb = new ProcessBuilder("java", "-jar", "C:\\Users\\NMurad\\Programs\\pranks\\KeystrokeConfirm\\target\\kcp.jar");
+                ProcessBuilder pb = new ProcessBuilder("java", "-jar", 
+                		"C:\\Users\\NMurad\\Programs\\pranks\\KeystrokeConfirm\\target\\kcp.jar", charPressed);
                 try {
 					pb.start();
 				} catch (IOException e) {
