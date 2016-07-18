@@ -4,13 +4,7 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-import java.awt.Image;
-import java.io.File;
-import java.io.IOException;
-import java.net.URL;
-
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
+import java.awt.Toolkit;
 
  class KeystrokeConfirmPrompt {
 	private static void createPrompt(String charPressed) {
@@ -26,17 +20,8 @@ import javax.swing.ImageIcon;
 		JDialog dialog = optionPane.createDialog("Input Information");
 		
 		//set the icon
-		try {
-			dialog.setIconImage(ImageIO.read(new File("img/keyboard.png")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-//		URL iconURL = KeystrokeConfirmPrompt.class.getResource("img/keyboard.png");
-//		System.out.println(iconURL);
-//		ImageIcon icon = new ImageIcon(iconURL);
-//		dialog.setIconImage(icon.getImage());
-//		Image keyboardIcon = new ImageIcon(KeystrokeConfirmPrompt.class.getResource("img/keyboard.png")).getImage();
-//		dialog.setIconImage(keyboardIcon);
+		Class<?> cl=new Object(){}.getClass().getEnclosingClass();
+		dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(cl.getResource("/ca/nwam/v/kcp/img/keyboard.png")));
 		
 		//set other options to make the box annoying
 		dialog.setAlwaysOnTop(true);
@@ -46,7 +31,12 @@ import javax.swing.ImageIcon;
 	
 	public static void main(String args[]) {
 		String charPressed;
-		charPressed = args[1];
+		if(args.length <= 0) {
+			charPressed = "undefined";
+		} else {
+			charPressed = args[0];
+		}
 		createPrompt(charPressed);
+		System.exit(0);
 	}
 }
