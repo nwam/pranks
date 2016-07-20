@@ -9,7 +9,6 @@ public class App {
 
 
 	public static void main(String[] args) {
-	
 		//init keyboard hook
 		GlobalKeyboardHook khook;
 		try {
@@ -31,7 +30,7 @@ public class App {
                 System.out.println(charPressed);
                 //run the prompt as a separate program to allow it to regain focus and multiply
                 ProcessBuilder pb = new ProcessBuilder("java", "-jar", 
-                		"C:\\Users\\NMurad\\Programs\\pranks\\KeystrokeConfirm\\target\\kcp.jar", charPressed);
+                		"kcp.jar", charPressed);
                 try {
 					pb.start();
 				} catch (IOException e) {
